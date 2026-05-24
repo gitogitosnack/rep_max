@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rep_max/services/firebase_service.dart';
+import 'package:rep_max/services/firebase_service.dart' as app_service;
 import 'package:rep_max/screens/auth_screen.dart';
 import 'package:rep_max/screens/home_screen.dart';
 import 'firebase_options.dart';
@@ -36,7 +36,7 @@ class AuthWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
-      stream: FirebaseService().authStateChanges,
+      stream: app_service.FirebaseService().authStateChanges,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(

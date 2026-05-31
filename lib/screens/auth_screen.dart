@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rep_max/screens/home_screen.dart';
 import 'package:rep_max/services/firebase_service.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -34,6 +35,7 @@ class _AuthScreenState extends State<AuthScreen> {
     });
 
     try {
+      // ログインまたはユーザー登録をskipして、ホーム画面に遷移する
       if (_isLogin) {
         await _firebaseService.signIn(
           _emailController.text.trim(),
@@ -46,6 +48,13 @@ class _AuthScreenState extends State<AuthScreen> {
           _displayNameController.text.trim(),
         );
       }
+
+      if (mounted) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+      }
+
     } on FirebaseAuthException catch (e) {
       setState(() {
         _errorMessage = e.message ?? 'Authentication error';

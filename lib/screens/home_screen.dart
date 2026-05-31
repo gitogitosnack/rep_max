@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Rep Max - 筋トレ記録'),
+        title: const Text('RepMax'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -105,6 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
+      
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

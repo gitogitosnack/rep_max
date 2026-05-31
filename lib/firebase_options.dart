@@ -41,50 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDummyApiKeyForWeb',
-    appId: '1:123456789:web:abcdef1234567890',
-    messagingSenderId: '123456789',
-    projectId: 'rep-max-project',
-    authDomain: 'rep-max-project.firebaseapp.com',
-    databaseURL: 'https://rep-max-project.firebaseio.com',
-    storageBucket: 'rep-max-project.appspot.com',
+    apiKey: 'AIzaSyCJDFfofIPtHb_uFaSjGhDx0hAxDJtIDbA',
+    appId: '1:933946157522:web:eb75aec187a27b65eb800b',
+    messagingSenderId: '933946157522',
+    projectId: 'rep-max-6adbe',
+    authDomain: 'rep-max-6adbe.firebaseapp.com',
+    storageBucket: 'rep-max-6adbe.firebasestorage.app',
+    measurementId: 'G-GZN5YF8V5W',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDummyApiKeyForAndroid',
-    appId: '1:123456789:android:abcdef1234567890',
-    messagingSenderId: '123456789',
-    projectId: 'rep-max-project',
-    databaseURL: 'https://rep-max-project.firebaseio.com',
-    storageBucket: 'rep-max-project.appspot.com',
+    apiKey: 'AIzaSyDTVeAFhQ6u5iFqxQuihoom9nDW18PwrIs',
+    appId: '1:933946157522:android:394c6101562d6717eb800b',
+    messagingSenderId: '933946157522',
+    projectId: 'rep-max-6adbe',
+    storageBucket: 'rep-max-6adbe.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDummyApiKeyForIOS',
-    appId: '1:123456789:ios:abcdef1234567890',
-    messagingSenderId: '123456789',
-    projectId: 'rep-max-project',
-    databaseURL: 'https://rep-max-project.firebaseio.com',
-    storageBucket: 'rep-max-project.appspot.com',
+    apiKey: 'AIzaSyBJAdQnZm5OUSRauHC3jGJoKWmaLxQwFnw',
+    appId: '1:933946157522:ios:153765bb07385240eb800b',
+    messagingSenderId: '933946157522',
+    projectId: 'rep-max-6adbe',
+    storageBucket: 'rep-max-6adbe.firebasestorage.app',
     iosBundleId: 'com.example.repMax',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDummyApiKeyForMacOS',
-    appId: '1:123456789:macos:abcdef1234567890',
-    messagingSenderId: '123456789',
-    projectId: 'rep-max-project',
-    databaseURL: 'https://rep-max-project.firebaseio.com',
-    storageBucket: 'rep-max-project.appspot.com',
+    apiKey: 'AIzaSyBJAdQnZm5OUSRauHC3jGJoKWmaLxQwFnw',
+    appId: '1:933946157522:ios:153765bb07385240eb800b',
+    messagingSenderId: '933946157522',
+    projectId: 'rep-max-6adbe',
+    storageBucket: 'rep-max-6adbe.firebasestorage.app',
     iosBundleId: 'com.example.repMax',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDummyApiKeyForWindows',
-    appId: '1:123456789:windows:abcdef1234567890',
-    messagingSenderId: '123456789',
-    projectId: 'rep-max-project',
-    databaseURL: 'https://rep-max-project.firebaseio.com',
-    storageBucket: 'rep-max-project.appspot.com',
+    apiKey: 'AIzaSyCJDFfofIPtHb_uFaSjGhDx0hAxDJtIDbA',
+    appId: '1:933946157522:web:4293ce4a269795d5eb800b',
+    messagingSenderId: '933946157522',
+    projectId: 'rep-max-6adbe',
+    authDomain: 'rep-max-6adbe.firebaseapp.com',
+    storageBucket: 'rep-max-6adbe.firebasestorage.app',
+    measurementId: 'G-TYYKJLYR7S',
   );
+
 }

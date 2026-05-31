@@ -34,8 +34,13 @@ class FirebaseService {
       await _firestore.collection('users').doc(credential.user!.uid).set({
         'name': displayName,
         'email': email,
+        'password': password,
         'createdAt': Timestamp.now(),
       });
+
+      // 登録直後に強制ログアウトして、自動ログインを打ち消す。
+      // これがないと、ユーザー登録直後にホーム画面に遷移してしまうため、一旦ログイン画面を経由してログインしてもらうために、ログイン状態をリセットする
+      await signOut();
 
       return credential;
     } on FirebaseAuthException catch (e) {

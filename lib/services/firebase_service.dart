@@ -139,4 +139,48 @@ class FirebaseService {
         .doc(workoutId)
         .delete();
   }
+
+  // 種目を登録
+  Future<void> addExercise(String exerciseName) async {
+    if (currentUser == null) throw Exception('User not logged in');
+
+    await _firestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .collection('exercises')
+        .doc(exerciseName)
+        .set({
+          'name': exerciseName,
+          'createdAt': Timestamp.now(),
+        });
+  }
+
+  // 種目を削除
+  Future<void> deleteExercise(String exerciseName) async {
+    if (currentUser == null) throw Exception('User not logged in');
+
+    await _firestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .collection('exercises')
+        .doc(exerciseName)
+        .delete();
+  }
+
+  // 登録済みの種目を取得（リアルタイム）
+  Stream<List<String>> getExercises() {
+    if (currentUser == null) {
+      return Stream.value([]);
+    }
+
+    return _firestore
+        .collection('users')
+        .doc(currentUser!.uid)
+        .collection('exercises')
+        .snapshots()
+        .map((snapshot) {
+      final exercises = snapshot.docs.map((doc) => doc['name'] as String).toList();
+      return exercises..sort();
+    });
+  }
 }

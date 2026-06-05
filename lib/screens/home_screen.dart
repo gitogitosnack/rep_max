@@ -3,6 +3,7 @@ import 'package:rep_max/services/firebase_service.dart';
 import 'package:rep_max/models/workout.dart';
 import 'package:rep_max/screens/add_workout_screen.dart';
 import 'package:rep_max/screens/personal_best_screen.dart';
+import 'package:rep_max/screens/exercise_management_screen.dart';
 import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -58,16 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(height: 16.0),
                   const Text('筋トレ記録がありません'),
                   const SizedBox(height: 24.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const AddWorkoutScreen(),
-                        ),
-                      );
-                    },
-                    child: const Text('記録を追加する'),
-                  ),
                 ],
               ),
             );
@@ -109,6 +100,19 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          FloatingActionButton(
+            heroTag: 'exercise_management',
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const ExerciseManagementScreen(),
+                ),
+              );
+            },
+            tooltip: '種目を管理',
+            child: const Icon(Icons.list),
+          ),
+          const SizedBox(height: 16.0),
           FloatingActionButton(
             heroTag: 'personal_best',
             onPressed: () {

@@ -18,13 +18,6 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
 
   bool _isLoading = false;
   String? _errorMessage;
-  List<String> _suggestedExercises = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _loadExercises();
-  }
 
   @override
   void dispose() {
@@ -33,13 +26,6 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
     _repsController.dispose();
     _setsController.dispose();
     super.dispose();
-  }
-
-  Future<void> _loadExercises() async {
-    final exercises = await _firebaseService.getExerciseNames();
-    setState(() {
-      _suggestedExercises = exercises;
-    });
   }
 
   Future<void> _addWorkout() async {
@@ -112,36 +98,38 @@ class _AddWorkoutScreenState extends State<AddWorkoutScreen> {
             if (_errorMessage != null) const SizedBox(height: 16.0),
 
             // 種目名フィールド
-            Autocomplete<String>(
-              optionsBuilder: (TextEditingValue textEditingValue) {
-                if (textEditingValue.text.isEmpty) {
-                  return _suggestedExercises;
+            StreamBuilder<List<String>>(
+              stream: _firebaseService.getExercises(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
                 }
-                return _suggestedExercises
-                    .where((exercise) =>
-                        exercise.contains(textEditingValue.text))
-                    .toList();
-              },
-              onSelected: (String selection) {
-                _exerciseController.text = selection;
-              },
-              fieldViewBuilder: (BuildContext context,
-                  TextEditingController textEditingController,
-                  FocusNode focusNode,
-                  VoidCallback onFieldSubmitted) {
-                _exerciseController.addListener(() {
-                  textEditingController.text = _exerciseController.text;
-                });
-                return TextField(
-                  controller: textEditingController,
-                  focusNode: focusNode,
+
+                final exercises = snapshot.data ?? [];
+                final selectedExercise = _exerciseController.text.isNotEmpty
+                    ? _exerciseController.text
+                    : null;
+
+                return DropdownButtonFormField<String>(
+                  value: exercises.contains(selectedExercise) ? selectedExercise : null,
                   decoration: InputDecoration(
-                    labelText: '種目名（例：ベンチプレス）',
+                    labelText: '種目名を選択',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                  enabled: !_isLoading,
+                  items: exercises.map((exercise) {
+                    return DropdownMenuItem<String>(
+                      value: exercise,
+                      child: Text(exercise),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    if (value != null) {
+                      _exerciseController.text = value;
+                    }
+                  },
+                  isExpanded: true,
                 );
               },
             ),
